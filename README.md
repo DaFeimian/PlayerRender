@@ -4,7 +4,7 @@ tips: 请使用md编译器或python charm打开本md文件更加便于阅读。
 
 # PlayerRender
 > - 点此阅读[灵免以太文档](http://www.dafeimian.com/docs/LingmienAether)
-> - 点此阅读[GitHub]项目仓库(https://github.com/DaFeimian/PlayerRender)
+> - 点此阅读[GitHub项目仓库](https://github.com/DaFeimian/PlayerRender)
 > - 单独运行没有效果，需要灵免以太测试环境
 
 我的世界中国基岩版自定义玩家渲染[jingliu.json](resource_pack_3DVkgFUz%2Fmodconfigs%2Fjingliu.json)Demo，至少需要灵免以太`1.0.10`版本以上。
