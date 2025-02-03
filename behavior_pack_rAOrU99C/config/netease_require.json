@@ -1,0 +1,6 @@
+{
+    "modName": "Demo",
+    "modRequire": [
+        "LingmienAether"
+    ]
+}

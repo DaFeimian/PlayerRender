@@ -1,0 +1,41 @@
+{
+    "format_version": "1.0.10",
+    "dafeimian:render": {
+        "components": {
+            "dafeimian:entity": {
+                "animation_controllers": [
+                    "controller.animation.custom_render.scale",
+                    "controller.animation.custom_render.states"
+                ],
+                "animations": [
+                    "2",
+                    "3",
+                    "idle",
+                    "idle2",
+                    "walk",
+                    "sprint",
+                    "fall",
+                    "swim",
+                    "sneak",
+                    "sneak_idle",
+                    "no_weapon",
+                    "attack_z",
+                    "attack_z2",
+                    "attack1",
+                    "attack2",
+                    "attack3",
+                    "attack4",
+                    "attack_xl1_backup",
+                    "attack_xl1",
+                    "attack_xl2_backup",
+                    "attack_xl2_weiyi",
+                    "attack_xl2",
+                    "idletoidle2",
+                    "attack_zj",
+                    "bishaji",
+                    "bishaji_weiyi"
+                ]
+            }
+        }
+    }
+}
