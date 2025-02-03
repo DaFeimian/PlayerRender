@@ -1,0 +1,488 @@
+{
+	"format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.custom_render.scale": {
+			"initial_state": "scale",
+			"states": {
+				"scale": {
+					"animations": [
+						"scale", "common", "idle",
+						{
+							"first_person_idle": "variable.is_first_person"
+						}
+					]
+				}
+			}
+		},
+        "controller.animation.custom_render.weapon": {
+			"initial_state": "no_weapon",
+			"states": {
+				"no_weapon": {
+					"animations": [
+						"no_weapon"
+					],
+					"transitions": [
+						{
+							"weapon": "query.mod.attack || query.mod.skill || query.mod.bishaji || query.mod.attack_zj"
+						}
+					],
+					"blend_transition": 0.05
+				},
+                "weapon": {
+                    "transitions": [
+						{
+							"no_weapon": "!query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj"
+						}
+					],
+					"blend_transition": 0.05
+                }
+			}
+		},
+        "controller.animation.custom_render.states": {
+			"initial_state": "idle",
+			"states": {
+				"idle": {
+					"transitions": [
+						{
+							"walk": "query.modified_move_speed > 0.1 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"sprint": "query.modified_move_speed > 0.1 && !query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"swim": "!query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && query.is_swimming"
+						},
+						{
+							"sneak_idle": "query.modified_move_speed <= 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+							"sneak": "query.modified_move_speed > 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+                            "fall": "query.vertical_speed <= -8 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+                        },
+                        {
+                            "attack": "query.mod.attack"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.25
+				},
+                "walk": {
+					"animations": [
+						"walk",
+						{
+							"third_person_walk": "!variable.is_first_person"
+						}
+					],
+					"transitions": [
+						{
+							"idle": "query.modified_move_speed <= 0.1 && !query.is_sneaking && (!query.mod.attack || !query.mod.skill || !query.mod.bishaji || !query.mod.attack_zj)"
+						},
+						{
+							"sprint": "query.modified_move_speed > 0.1 && !query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"swim": "!query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && query.is_swimming"
+						},
+						{
+							"sneak_idle": "query.modified_move_speed <= 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+							"sneak": "query.modified_move_speed > 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+                            "fall": "query.vertical_speed <= -8 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+                        },
+                        {
+                            "attack": "query.mod.attack"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.25
+				},
+                "sprint": {
+					"animations": [
+						"sprint",
+						{
+							"third_person_sprint": "!variable.is_first_person"
+						}
+					],
+					"transitions": [
+						{
+							"idle": "query.modified_move_speed <= 0.1 && !query.is_sneaking && (!query.mod.attack || !query.mod.skill || !query.mod.bishaji || !query.mod.attack_zj)"
+						},
+						{
+							"walk": "query.modified_move_speed > 0.1 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"swim": "!query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && query.is_swimming"
+						},
+						{
+							"sneak_idle": "query.modified_move_speed <= 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+							"sneak": "query.modified_move_speed > 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+                            "fall": "query.vertical_speed <= -8 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+                        },
+                        {
+                            "attack": "query.mod.attack"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.25
+				},
+				"swim": {
+					"animations": [
+						"swim",
+						{
+							"third_person_swim": "!variable.is_first_person"
+						}
+					],
+					"transitions": [
+						{
+							"idle": "query.modified_move_speed <= 0.1 && !query.is_sneaking && (!query.mod.attack || !query.mod.skill || !query.mod.bishaji || !query.mod.attack_zj)"
+						},
+						{
+							"idle": "!query.is_swimming"
+						},
+						{
+							"walk": "query.modified_move_speed > 0.1 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"sneak_idle": "query.modified_move_speed <= 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+							"sneak": "query.modified_move_speed > 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+                            "fall": "query.vertical_speed <= -8 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+                        },
+                        {
+                            "attack": "query.mod.attack"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.25
+				},
+                "sneak_idle": {
+					"animations": [
+						"sneak_idle",
+						{
+							"third_person_sneak_idle": "!variable.is_first_person"
+						}
+					],
+					"transitions": [
+                        {
+							"idle": "!query.is_sneaking"
+						},
+						{
+							"idle": "query.modified_move_speed <= 0.1 && !query.is_sneaking && (!query.mod.attack || !query.mod.skill || !query.mod.bishaji || !query.mod.attack_zj)"
+						},
+						{
+							"walk": "query.modified_move_speed > 0.1 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"sprint": "query.modified_move_speed > 0.1 && !query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"swim": "!query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && query.is_swimming"
+						},
+                        {
+							"sneak": "query.modified_move_speed > 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+                            "fall": "query.vertical_speed <= -8 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+                        },
+                        {
+                            "attack": "query.mod.attack"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.10
+				},
+                "sneak": {
+					"animations": [
+						"sneak",
+						{
+							"third_person_sneak": "!variable.is_first_person"
+						}
+					],
+					"transitions": [
+                        {
+							"idle": "!query.is_sneaking"
+						},
+						{
+							"idle": "query.modified_move_speed <= 0.1 && !query.is_sneaking && (!query.mod.attack || !query.mod.skill || !query.mod.bishaji || !query.mod.attack_zj)"
+						},
+						{
+							"walk": "query.modified_move_speed > 0.1 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"sprint": "query.modified_move_speed > 0.1 && !query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"swim": "!query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && query.is_swimming"
+						},
+                        {
+							"sneak_idle": "query.modified_move_speed <= 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+                            "fall": "query.vertical_speed <= -8 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+                        },
+                        {
+                            "attack": "query.mod.attack"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.10
+				},
+                "fall": {
+					"animations": [
+						"fall",
+						{
+							"third_person_fall": "!variable.is_first_person"
+						}
+					],
+                    "transitions": [
+                        {
+							"idle": "query.vertical_speed > -8"
+						},
+						{
+							"walk": "query.vertical_speed > -8 && query.modified_move_speed > 0.1 && !query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"sprint": "query.vertical_speed > -8 && query.modified_move_speed > 0.1 && !query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+						{
+							"swim": "!query.is_sneaking && query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && query.is_swimming"
+						},
+                        {
+							"sneak_idle": "query.vertical_speed > -8 && query.modified_move_speed <= 0.1 && query.is_sneaking && !query.is_sprinting && !query.mod.attack && !query.mod.skill && !query.mod.bishaji && !query.mod.attack_zj && !query.is_swimming"
+						},
+                        {
+                            "attack": "query.mod.attack"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.10
+                },
+				"skill": {
+					"animations": [
+						"skill",
+						{
+							"third_person_skill": "!variable.is_first_person"
+						}
+					],
+                    "transitions": [
+                        {
+							"idle": "!query.mod.skill"
+						}
+					],
+					"blend_transition": 0.10
+                },
+                "attack": {
+                    "transitions": [
+                        {
+							"idle": "!query.mod.attack"
+						},
+                        {
+                            "attack1": "query.mod.attack == 1.0"
+                        },
+                        {
+                            "attack2": "query.mod.attack == 2.0"
+                        },
+                        {
+                            "attack3": "query.mod.attack == 3.0"
+                        },
+                        {
+                            "attack4": "query.mod.attack == 4.0"
+                        },
+                        {
+                            "attack5": "query.mod.attack == 5.0"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        }
+					],
+					"blend_transition": 0.10
+                },
+                "attack1": {
+                    "animations": [
+						"attack1",
+						{
+							"third_person_attack1": "!variable.is_first_person"
+						}
+					],
+                    "transitions": [
+                        {
+							"idle": "!query.mod.attack"
+						},
+                        {
+                            "attack2": "query.mod.attack == 2.0"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.10
+                },
+                "attack2": {
+                    "animations": [
+						"attack2",
+						{
+							"third_person_attack2": "!variable.is_first_person"
+						}
+					],
+                    "transitions": [
+                        {
+							"idle": "!query.mod.attack"
+						},
+                        {
+                            "attack3": "query.mod.attack == 3.0"
+                        },
+						{
+                            "attack1": "query.mod.attack == 1.0"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.10
+                },
+                "attack3": {
+                    "animations": [
+						"attack3",
+						{
+							"third_person_attack3": "!variable.is_first_person"
+						}
+					],
+                    "transitions": [
+                        {
+							"idle": "!query.mod.attack"
+						},
+                        {
+                            "attack4": "query.mod.attack == 4.0"
+                        },
+						{
+                            "attack1": "query.mod.attack == 1.0"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.10
+                },
+                "attack4": {
+                    "animations": [
+						"attack4",
+						{
+							"third_person_attack4": "!variable.is_first_person"
+						}
+					],
+                    "transitions": [
+                        {
+							"idle": "!query.mod.attack"
+						},
+                        {
+                            "attack5": "query.mod.attack == 5.0"
+                        },
+						{
+                            "attack1": "query.mod.attack == 1.0"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.10
+                },
+                "attack5": {
+                    "animations": [
+						"attack5",
+						{
+							"third_person_attack5": "!variable.is_first_person"
+						}
+					],
+                    "transitions": [
+                        {
+							"idle": "!query.mod.attack"
+						},
+                        {
+                            "attack1": "query.mod.attack == 1.0"
+                        },
+                        {
+                            "skill": "query.mod.skill"
+                        },
+                        {
+                            "bishaji": "query.mod.bishaji"
+                        }
+					],
+					"blend_transition": 0.10
+                },
+                "bishaji": {
+                    "animations": [
+						"bishaji",
+						{
+							"third_person_bishaji": "!variable.is_first_person"
+						}
+					],
+                    "transitions": [
+                        {
+							"idle": "!query.mod.bishaji"
+						}
+					],
+					"blend_transition": 0.10
+                }
+			}
+		}
+    }
+}
